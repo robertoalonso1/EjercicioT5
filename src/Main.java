@@ -1,16 +1,27 @@
 public class Main {
-
+    public static void main(String[] args){
+        Scanner lector = new Scanner(System.in);
+        int resultado, precio, descuento;
+        try {
+            System.out.println("Introduce el precio: ");
+            precio = lector.nextInt();
+            System.out.println("Introduce el descuento: ");
+            descuento = lector.nextInt();
+            resultado = calcularPrecioFinal(precio,descuento);
+            System.out.println(resultado);
+        } catch (IllegalArgumentException e){
+            System.out.println("Error" + e.getMessage());
+        }
+    }
     //EJERCICIO 3
-    public static int calcularPrecioFinal(int precioBase, int descuento) {
+     public static int calcularPrecioFinal(int precioBase, int descuento) {
 
         if (precioBase < 0) {
-            System.out.println("El precio base no puede ser negativo.");
-            return -1;
+            throw new IllegalArgumentException("el precio base no puede ser menor que 0");
         }
 
         if (descuento < 0 || descuento > 100) {
-            System.out.println("El descuento debe estar entre 0 y 100.");
-            return -1;
+            throw new IllegalArgumentException("el precio base no puede ser menor que 0 o mayor que 100");
         }
 
         return precioBase - (precioBase * descuento / 100);
@@ -18,20 +29,16 @@ public class Main {
 
     //EJERCICIO 5
     public static int maximo(int[] datos) {
-
-        if (datos == null || datos.length == 0) {
-            System.out.println("El array está vacío o es null.");
-            return -1; // valor de error
-        }
-
-        int max = datos[0];  // Se inicializa correctamente
-
-        for (int i = 1; i < datos.length; i++) {
-            if (datos[i] > max) {
-                max = datos[i];
-            }
-        }
-
-        return max;
+    if (datos == null || datos.length == 0) {
+        throw new IllegalArgumentException("El arreglo no puede estar vacío");
     }
+
+    int max = datos[0]; 
+    for (int i = 1; i < datos.length; i++) {
+        if (datos[i] > max) {
+            max = datos[i];
+        }
+    }
+    return max;
+}
 }
