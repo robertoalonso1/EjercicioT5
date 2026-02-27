@@ -30,7 +30,7 @@ public class Main {
     //EJERCICIO 5
     public static int maximo(int[] datos) {
     if (datos == null || datos.length == 0) {
-        throw new IllegalArgumentException("El arreglo no puede estar vacío");
+        throw new IllegalArgumentException("no puede estar vacío");
     }
 
     int max = datos[0]; 
